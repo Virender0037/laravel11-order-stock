@@ -1,6 +1,10 @@
 <div>
     <h1>Customers Listing</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div>
     <a href="{{route('customers.create')}}" class="btn btn-primary">Create Customer</a>
+    </div>
+    </br>
     <div>
     <a href="{{route('dashboard')}}" class="btn btn-primary">Back</a>
     </div>
@@ -15,7 +19,7 @@
     border:1px solid black;
     }
     </style>
-    <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>id</th>
@@ -51,3 +55,4 @@
         @endif
         </table>
     </div>
+     {{$customers->withQueryString()->links()}}
