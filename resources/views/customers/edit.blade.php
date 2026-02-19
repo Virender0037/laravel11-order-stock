@@ -1,4 +1,5 @@
 <div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <h1>Edit Customer</h1>
 <form method="POST" action="{{ route('customers.update', $customer) }}">
     @csrf
@@ -12,7 +13,7 @@
     @endforeach
     @endif
 
-     <div>
+    <div>
         <label for="name">Name:</label>
         <input type="name" id="name" name="name" value="{{ old('name', $customer->name) }}">
     </div>
