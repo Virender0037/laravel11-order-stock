@@ -41,35 +41,54 @@ class CustomerFeatureTest extends TestCase
 
     }
 
-    public function test_duplicate_emails(): void
+    public function test_duplicate_emails_fails_validation(): void
     {
+        $user = User::factory()->create();
+
+        $existing = Customer::factory()->create([
+          'email' => 'same@same.com',
+        ]);
+
+        $payload = Customer::factory()->make([
+        'email' => $existing->email,
+        ])->toArray();
+
+        $this->actingAs($user)
+        ->post('/customers', $payload)
+        ->assertSessionHasErrors(['email']);
 
     }
 
     public function test_auth_user_can_update_customers(): void
     {   
-        $customer = Customer::factory()->create();
-
         $user = User::factory()->create();
 
-        $updateddata = Customer::factory()->make()->toArray();
+        $customer = Customer::factory()->create();
+
+        $updatedata = Customer::factory()->make()->toArray();
 
         $this->actingAs($user)
-         ->put("/customers/{$customer->id}", $updateddata);
-        
+        ->put("/customers/{$customer->id}", $updatedata)
+        ->assertRedirect('/customers');
+
         $this->assertDatabaseHas('customers', [
             'id' => $customer->id,
-            'email' => $updatedData['email'],
+            'email' => $updatedata['email'],
         ]);
-
     }
 
     public function test_auth_user_can_delete_customers(): void
     {   
-        $customer = Customer::factory()->create();
-
         $user = User::factory()->create();
 
+        $customer = Customer::factory()->create();
 
+        $this->actingAs($user)
+        ->delete("/customers/{$customer->id}")
+        ->assertRedirect('/customers');
+
+        $this->assertDatabaseMissing('customers', [
+            'id' => $customer->id,
+        ]);
     }
 }
