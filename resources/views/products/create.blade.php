@@ -18,7 +18,7 @@
     </div>
     <div>
         <label for="name">name:</label>
-        <input type="name" id="name" name="name" value="{{ old('name') }}"/>
+        <input type="text" id="name" name="name" value="{{ old('name') }}"/>
     </div>
     <div>
         <label for="price">price:</label>
@@ -29,8 +29,15 @@
         <input type="number" name="stock" value="{{ old('stock') }}"/>
     </div>
     <div>
-        <label for="status">status:</label>
-        <input type="number" name="phone" value="{{ old('status') }}"/>
-    </div>
+    <label for="status">Status:</label>
+    <select name="status">
+        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+            Active
+        </option>
+        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
+            Inactive
+        </option>
+    </select>
+</div>
     <button type="submit">Create Product</button>
 </form>

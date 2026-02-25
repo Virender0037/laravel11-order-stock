@@ -35,15 +35,17 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
+                    <td>{{ $product->sku }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->email }}</td>
-                    <td>{{ $product->phone }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->stock }}</td>
+                    <td>{{ $product->status }}</td>
                     <td>
-                    <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary">Edit</a>
-                    <form method="POST" action="{{ route('customers.destroy', $customer->id) }}" style="display:inline;">
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
+                    <form method="POST" action="{{ route('products.destroy', $product->id) }}" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">
                             Delete
                         </button>
                     </form>
@@ -52,8 +54,8 @@
             @endforeach
         </tbody>
         @else
-        <p>No customer found</p>
+        <p>No product found</p>
         @endif
         </table>
     </div>
-     {{$customers->withQueryString()->links()}}
+     {{$products->withQueryString()->links()}}

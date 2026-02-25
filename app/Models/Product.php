@@ -16,6 +16,7 @@ class Product extends Model
         'price',
         'stock',
         'status',
+        'created_by',
     ];
 
     public function orderitems(){
@@ -24,5 +25,9 @@ class Product extends Model
 
     public function stocklogs(){
         return $this->hasMany(StockLog::class);
+    }
+
+    public function creator(){
+       return $this->hasOne(User::class);
     }
 }
