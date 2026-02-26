@@ -1,5 +1,6 @@
 <div>
     <h1>Trash Products Listing</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <div>
     <a href="{{route('dashboard')}}" class="btn btn-primary">Back</a>
     </div>
@@ -38,7 +39,7 @@
                     <form method="POST" action="{{ route('products.restore', $product->id) }}" style="display:inline;">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-primary">
                         Restore
                         </button>
                     </form>

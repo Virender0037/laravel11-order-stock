@@ -15,11 +15,6 @@ class ProductPolicy
         return true;
     }
 
-    public function viewTrashed(User $user)
-    {
-        return true;
-    }
-
     public function view(User $user, Product $product)
     {
         return true;
@@ -48,5 +43,10 @@ class ProductPolicy
     public function forceDelete(User $user, Product $product)
     {
         return (int)$user->is_admin === 1;
+    }
+
+    public function viewTrashed(User $user)
+    {
+        return true;
     }
 }

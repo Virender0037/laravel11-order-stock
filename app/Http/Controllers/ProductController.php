@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(Product::class, 'product');
+     $this->authorizeResource(Product::class, 'product');
     }
 
     public function index(Request $request)
@@ -41,9 +41,9 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    public function indextrash(Request $request, Product $product)
+    public function indextrash(Request $request)
     {  
-       $this->authorize('viewTrashed', $product);
+       $this->authorize('viewTrashed', Product::class);
        $query = Product::onlyTrashed()->with('user');
         if((int) Auth()->user()->is_admin !== 1){
             $query->where('created_by', Auth::id());
@@ -62,8 +62,8 @@ class ProductController extends Controller
             ->with('info', 'Product is not deleted.');
     }
 
-    public function forcedelete(Product $product, ForceDeleteProductAction $action){
-      $this->authorize('forcedelete', $product);
+    public function forceDelete(Product $product, ForceDeleteProductAction $action){
+      $this->authorize('forceDelete', $product);
       if($action->execute($product)){
         return redirect()
         ->route('products.trash')

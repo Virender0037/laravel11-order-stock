@@ -9,7 +9,7 @@ class RestoreProductAction
 {
     use AsAction;
 
-    public function handle(Product $product)
+    public function execute(Product $product)
     {
         if( !$product->trashed()){
             return false;
