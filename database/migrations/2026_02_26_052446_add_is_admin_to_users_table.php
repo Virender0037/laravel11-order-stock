@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('created_by')->constrained('users')->restrictOnDelete(); 
+        Schema::table('users', function (Blueprint $table) {
+         $table->boolean('is_admin')->after('password')->default('0');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-             $table->dropConstrainedForeignId('created_by');
+        Schema::table('users', function (Blueprint $table) {
+         $table->dropColumn('is_admin');
         });
     }
 };

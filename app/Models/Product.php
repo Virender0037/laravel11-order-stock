@@ -30,4 +30,8 @@ class Product extends Model
     public function creator(){
        return $this->hasOne(User::class);
     }
+
+     public function user(){
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
