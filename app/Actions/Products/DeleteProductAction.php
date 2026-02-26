@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Products;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class Products.CreateProductAction
+class DeleteProductAction
 {
     use AsAction;
 
