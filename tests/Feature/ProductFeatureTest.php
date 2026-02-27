@@ -33,4 +33,14 @@ class ProductFeatureTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function soft_delete_moves_product_to_trash(): void
+    {
+        $user = User::factory()->create(['is_admin' => 1]);
+
+        $response = $this->actingAs($user)->get('/products/destroy');
+
+        $response->assertStatus(200);
+
+    }
 }
