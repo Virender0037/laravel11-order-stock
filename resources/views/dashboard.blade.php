@@ -14,6 +14,10 @@
                 </div>
                 @endcan
 
+                <div class="p-6 text-gray-900">
+                    <a href="{{route('orders.create')}}" >{{ __("Create Orders") }}</a>
+                </div>
+
                 @can('viewAny', \App\Models\Product::class)
                 <div class="p-6 text-gray-900">
                     <a href="{{route('products.index')}}" >{{ __(" View Products") }}</a>
