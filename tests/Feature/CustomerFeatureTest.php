@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CustomerFeatureTest extends TestCase
@@ -14,8 +13,7 @@ class CustomerFeatureTest extends TestCase
 
     public function test_guest_cannot_access_customers_index(): void
     {
-        $response = $this->get('/customers')
-                 ->assertRedirect('/login');
+        $this->get('/customers')->assertRedirect('/login');
     }
 
     public function test_auth_user_can_view_customers_index(): void

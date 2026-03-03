@@ -23,7 +23,7 @@ class ProductFeatureTest extends TestCase
     }
 
     public function test_non_admin_can_view_trash_but_only_sees_own(): void
-    {   
+    {         
         $admin = User::factory()->create(['is_admin' => 1]);
         $user = User::factory()->create(['is_admin' => 0]);
 
@@ -67,6 +67,6 @@ class ProductFeatureTest extends TestCase
         $adminproduct->delete();
 
         $this->actingAs($user)->patch(route('products.restore', $adminproduct->id))->assertForbidden();
-        $this->actingAs($user)->patch(route('products.permanentdelete', $adminproduct->id))->assertForbidden();
+        $this->actingAs($user)->delete(route('products.permanentdelete', $adminproduct->id))->assertForbidden();
     }
 }
