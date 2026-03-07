@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -26,8 +27,9 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
+        dd($request);
         
     }
 

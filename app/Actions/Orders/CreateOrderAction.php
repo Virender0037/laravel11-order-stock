@@ -15,8 +15,13 @@ class CreateOrderAction
 
         $data['created_by'] = Auth::id();
 
-        return Order::create($data);
-        
+        return Order::create([
+            'customer_id' => $data['customer_id'],
+            'created_by' => $data['created_by'],
+            'order_no' => $data['order_no'] ?? 'ORD-' . strtoupper(uniqid()),
+            'status' => 'pending',
+            'total_amount' => 0,
+        ]);
     }
 }
 
